@@ -1,142 +1,256 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
-}
-
 .main {
-  display: flex;
-  flex: 1;
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  position: relative;
 }
 
-.intro {
+.header {
+  padding: 1.5rem;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
   align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actualLogo {
   height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
+  width: auto;
+  /* 
+   * The uploaded logo appears to be white on a transparent background. 
+   * Applying brightness(0) transforms all non-transparent pixels to 100% black (#000).
+   * opacity(0.9) slightly lightens it against the background to match the original #1a1a1a.
+   */
+  filter: brightness(0) opacity(0.9);
+}
+
+.titleSection {
+  text-align: center;
+  padding: 1rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleWrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #15b7b9;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin: 0;
+  /* Thick black outline and 3d shadow */
+  text-shadow:
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     3px  3px 0 #000,
+     4px  3px 0 #000,
+     4px  4px 0 #000,
+     5px  4px 0 #000,
+     5px  5px 0 #000,
+     6px  5px 0 #000,
+     6px  6px 0 #000,
+     7px  6px 0 #000;
+}
+
+.subtitleRibbon {
+  background-color: var(--secondary-orange);
+  color: #fff;
+  padding: 0.3rem 2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  z-index: 2;
+  margin-top: -8px;
+  -webkit-text-stroke: 0.5px #000;
+}
+
+.subtitleRibbon h2 {
+  font-size: 1rem;
+  margin: 0;
+  color: #1a1a1a;
+  -webkit-text-stroke: 0;
+}
+
+/* Add generic "ribbon" tails if needed, but in image it's just a rectangle with a small darker bottom border to anchor it */
+.subtitleRibbon::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #d15d00;
+}
+
+.content {
+  padding: 0 2rem 1.5rem;
+  font-size: 1.15rem;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+}
+
+.markOrange {
+  background-color: var(--highlight-orange);
+  padding: 0.1rem 0.2rem;
+  border-radius: 4px;
+  /* subtle irregular rotation to simulate marker */
+  display: inline-block;
+  box-shadow: -2px 0 0 var(--highlight-orange), 2px 0 0 var(--highlight-orange);
+}
+
+.markCyan {
+  background-color: var(--highlight-cyan);
+  padding: 0.1rem 0.2rem;
+  border-radius: 4px;
+  display: inline-block;
+  box-shadow: -2px 0 0 var(--highlight-cyan), 2px 0 0 var(--highlight-cyan);
+}
+
+.notReligion {
+  margin-top: 1.5rem;
   font-weight: 500;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+/* Form / Prayer section styling */
+.prayerWrapper {
+  position: relative;
+  margin-top: 1rem;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.prayerSpeechBubbleArrow {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 25px solid var(--prayer-bg);
+  margin-left: 20%;
+  position: relative;
+  bottom: -1px;
+  z-index: 2;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
+/* To simulate the border on the bubble arrow, we can put a slightly larger black arrow behind it */
+.prayerSpeechBubbleArrow::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-bottom: 27px solid #1a1a1a;
+  top: -1px;
+  left: -22px;
+  z-index: -1;
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
+.prayerBox {
+  background-color: var(--prayer-bg);
+  border-top: 2px solid #1a1a1a;
+  border-bottom: 2px solid #1a1a1a;
+  display: flex;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+.prayerContent {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+.sayThisPrayer {
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+.prayerText {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 500;
+  color: #333;
+}
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
+.illustrationWrapper {
+  width: 45%;
+  position: absolute;
+  bottom: -10px;
+  right: -20px;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+.illustration {
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+
+.footer {
+  background-color: var(--footer-bg);
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.footer h2 {
+  font-size: 1.25rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer h2 span {
+  font-weight: 700;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.link {
+  color: #1a1a1a;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.youtubeIcon {
+  flex-shrink: 0;
+}
+
+.link:hover {
+  color: var(--secondary-orange);
+}
+
+.separator {
+  color: #999;
 }
